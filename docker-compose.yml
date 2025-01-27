@@ -1,0 +1,12 @@
+version: '3.8.1'
+
+services:
+  app:
+    build: .
+    container_name: app_con
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/app
+    tty: true
+  
