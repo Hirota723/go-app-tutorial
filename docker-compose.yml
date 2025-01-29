@@ -1,6 +1,17 @@
 version: '3.8.1'
 
 services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dev
+    volumes:
+      - data-volume:/var/lib/postgresql
   app:
     build: .
     container_name: app_con
@@ -9,4 +20,9 @@ services:
     volumes:
       - ./src:/app
     tty: true
+    depends_on:
+      - db
+
+volumes:
+  data-volume:
   
